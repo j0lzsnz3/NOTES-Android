@@ -20,7 +20,7 @@ class GetAllNotesRepositoryImpl @Inject constructor(
             val response = retrofitService.getMoviesService().getAllNotes().execute()
 
             if (response.isSuccess()) {
-                ResultWrapper.Success(response.body()!!.payload)
+                ResultWrapper.Success(response.body()!!)
             } else {
                 val errorResponse = response.parseErrorResponse<ErrorResponse>()
                 if (errorResponse != null) {

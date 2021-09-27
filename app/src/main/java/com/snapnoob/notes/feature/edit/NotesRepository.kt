@@ -22,7 +22,7 @@ class NotesRepositoryImpl @Inject constructor(
             val response = retrofitService.getMoviesService().createNotes(notes).execute()
 
             if (response.isSuccess()) {
-                ResultWrapper.Success(response.body()!!.payload)
+                ResultWrapper.Success(response.body()!!)
             } else {
                 val errorResponse = response.parseErrorResponse<ErrorResponse>()
                 if (errorResponse != null) {
@@ -32,6 +32,7 @@ class NotesRepositoryImpl @Inject constructor(
                 }
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ResultWrapper.NetworkError
         }
     }
@@ -41,7 +42,7 @@ class NotesRepositoryImpl @Inject constructor(
             val response = retrofitService.getMoviesService().updateNotes(notes).execute()
 
             if (response.isSuccess()) {
-                ResultWrapper.Success(response.body()!!.payload)
+                ResultWrapper.Success(response.body()!!)
             } else {
                 val errorResponse = response.parseErrorResponse<ErrorResponse>()
                 if (errorResponse != null) {
@@ -51,6 +52,7 @@ class NotesRepositoryImpl @Inject constructor(
                 }
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ResultWrapper.NetworkError
         }
     }
@@ -60,7 +62,7 @@ class NotesRepositoryImpl @Inject constructor(
             val response = retrofitService.getMoviesService().deleteNotes(id).execute()
 
             if (response.isSuccess()) {
-                ResultWrapper.Success(response.body()!!.payload)
+                ResultWrapper.Success(response.body()!!.message)
             } else {
                 val errorResponse = response.parseErrorResponse<ErrorResponse>()
                 if (errorResponse != null) {
@@ -70,6 +72,7 @@ class NotesRepositoryImpl @Inject constructor(
                 }
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             ResultWrapper.NetworkError
         }
     }

@@ -5,6 +5,7 @@ import com.snapnoob.notes.feature.login.LoginRepository
 import com.snapnoob.notes.feature.login.LoginUseCase
 import com.snapnoob.notes.feature.login.LoginUseCaseImpl
 import com.snapnoob.notes.feature.main.GetAllNotesRepository
+import com.snapnoob.notes.feature.main.GetProfileRepository
 import com.snapnoob.notes.feature.main.NotesListUseCase
 import com.snapnoob.notes.feature.main.NotesListUseCaseImpl
 import com.snapnoob.notes.feature.profile.*
@@ -19,6 +20,8 @@ import javax.inject.Singleton
 import com.snapnoob.notes.feature.register.UploadProfilePictureUseCase as RegisterUploadProfilePictureUseCase
 import com.snapnoob.notes.feature.register.UploadProfilePictureUseCaseImpl as RegisterUploadProfilePictureUseCaseImpl
 import com.snapnoob.notes.feature.register.UserRepository as RegisterUserRepository
+import com.snapnoob.notes.feature.main.GetProfileUseCase as MainGetProfileUseCase
+import com.snapnoob.notes.feature.main.GetProfileUseCaseImpl as MainGetProfileUseCaseImpl
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -88,6 +91,12 @@ object UseCaseModule {
     @Provides
     fun provideGetProfileUseCase(userRepository: UserRepository): GetProfileUseCase {
         return GetProfileUseCaseImpl(userRepository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMainGetProfileUseCase(getProfileRepository: GetProfileRepository): MainGetProfileUseCase {
+        return MainGetProfileUseCaseImpl(getProfileRepository, Dispatchers.IO)
     }
 
 }

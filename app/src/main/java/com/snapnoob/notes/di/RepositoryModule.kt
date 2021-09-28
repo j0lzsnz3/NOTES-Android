@@ -6,6 +6,8 @@ import com.snapnoob.notes.feature.login.LoginRepository
 import com.snapnoob.notes.feature.login.LoginRepositoryImpl
 import com.snapnoob.notes.feature.main.GetAllNotesRepository
 import com.snapnoob.notes.feature.main.GetAllNotesRepositoryImpl
+import com.snapnoob.notes.feature.main.GetProfileRepository
+import com.snapnoob.notes.feature.main.GetProfileRepositoryImpl
 import com.snapnoob.notes.feature.profile.UserRepository
 import com.snapnoob.notes.feature.profile.UserRepositoryImpl
 import com.snapnoob.notes.network.RetrofitService
@@ -49,6 +51,12 @@ object RepositoryModule {
     @Provides
     fun provideLoginRepository(retrofitService: RetrofitService): LoginRepository {
         return LoginRepositoryImpl(retrofitService)
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetProfileRepository(retrofitService: RetrofitService): GetProfileRepository {
+        return GetProfileRepositoryImpl(retrofitService)
     }
 
 }

@@ -7,12 +7,16 @@ import android.view.View
 import android.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.snapnoob.notes.R
 import com.snapnoob.notes.databinding.ActivityNotesListBinding
 import com.snapnoob.notes.feature.edit.EditNotesActivity
 import com.snapnoob.notes.feature.edit.EditNotesEvent
+import com.snapnoob.notes.feature.profile.ProfileActivity
+import com.snapnoob.notes.network.RetrofitService
 import com.snapnoob.notes.network.model.Notes
+import com.snapnoob.notes.network.model.User
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +26,8 @@ class NotesListActivity : AppCompatActivity() {
     private lateinit var view: View
 
     private lateinit var viewModel: NotesListViewModel
+
+    private lateinit var user: User
 
     private val notesListAdapter by lazy {
         NotesListAdapter {
@@ -38,10 +44,13 @@ class NotesListActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[NotesListViewModel::class.java]
         observeViewModel()
         initView()
+
         viewModel.getAllNotes()
     }
 
     private fun initView() {
+        viewModel.getProfile()
+
         binding.swipeRefresh.setOnRefreshListener { viewModel.getAllNotes() }
         binding.rvNotesList.apply {
             layoutManager = LinearLayoutManager(this@NotesListActivity, LinearLayoutManager.VERTICAL, false)
@@ -56,7 +65,7 @@ class NotesListActivity : AppCompatActivity() {
         binding.swipeRefresh.setOnRefreshListener {
             viewModel.getAllNotes()
         }
-
+        binding.imgSetting.setOnClickListener { openProfileActivity() }
     }
 
     private fun observeViewModel() {
@@ -79,7 +88,19 @@ class NotesListActivity : AppCompatActivity() {
             is NotesListEvent.ShowError -> {
                 Snackbar.make(view, event.error, Snackbar.LENGTH_LONG).show()
             }
+            is NotesListEvent.DisplayProfile -> displayUserData(event.user)
         }
+    }
+
+    private fun displayUserData(user: User) {
+        this.user = user
+        if (user.profilePicture != null && user.profilePicture.isNotEmpty()) {
+            Glide.with(view)
+                .load(RetrofitService.BASE_URL_V1.plus(user.profilePicture))
+                .into(binding.imgProfile)
+        }
+        binding.tvName.text = user.name
+        binding.tvEmail.text = user.email
     }
 
     private fun openEditNoteActivity(notes: Notes?) {
@@ -87,6 +108,12 @@ class NotesListActivity : AppCompatActivity() {
         if (notes != null) {
             intent.putExtra(EditNotesActivity.NOTES_OBJECT, notes)
         }
+        startActivity(intent)
+    }
+
+    private fun openProfileActivity() {
+        val intent = Intent(this, ProfileActivity::class.java)
+        intent.putExtra(ProfileActivity.USER_PARCELABLE, user)
         startActivity(intent)
     }
 

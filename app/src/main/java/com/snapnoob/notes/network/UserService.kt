@@ -6,10 +6,7 @@ import com.snapnoob.notes.network.model.Login
 import com.snapnoob.notes.network.model.User
 import okhttp3.RequestBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface UserService {
     @POST("user/register")
@@ -19,7 +16,7 @@ interface UserService {
     fun login(@Body login: Login): Call<User>
 
     @GET("user/profile")
-    fun getProfile(@Field("email") email: String): Call<User>
+    fun getProfile(@Query("email") email: String): Call<User>
 
     @POST("user/profile/update")
     fun updateProfile(@Body user: User): Call<User>

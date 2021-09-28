@@ -38,4 +38,5 @@
     <string name="profile_picture">Profile Picture</string>
     <string name="str_please_waiting">Please wait ...</string>
     <string name="str_choose_birth_date">Choose birth date</string>
+    <string name="update_data">Update Data</string>
 </resources>

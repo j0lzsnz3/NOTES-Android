@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/view_choose_photo.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/view_no_data.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/layout/view_notes.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/view_progress_dialog.xml" value="0.35833333333333334" />
         <entry key="app/src/main/res/menu/main.xml" value="0.20729166666666668" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.37447916666666664" />
       </map>

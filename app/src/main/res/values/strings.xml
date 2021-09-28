@@ -4,4 +4,36 @@
     <string name="notes">Notes</string>
     <string name="delete">DELETE</string>
     <string name="create">Create</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="register">Register</string>
+    <string name="password_confirm">Password Confirm</string>
+    <string name="password">Password</string>
+    <string name="birth_day">Birth Day</string>
+    <string name="email">Email</string>
+    <string name="name">Name</string>
+    <string name="choose_photo">Choose Photo</string>
+    <string name="no_camera_detected">No Camera detected</string>
+
+    <string name="runtime_permission_double_name" translatable="false">%1$s and %2$s</string>
+    <string name="runtime_permission_camera">Camera</string>
+    <string name="runtime_permission_location">Location</string>
+    <string name="runtime_permission_microphone" translatable="false">Microphone</string>
+    <string name="runtime_permission_storage">Storage</string>
+    <string name="runtime_permission_phone">Phone</string>
+    <string name="runtime_permission_rationale_message_camera">Please enable Camera access to take picture.</string>
+    <string name="runtime_permission_rationale_message_microphone">Please enable Microphone access to use Card Reader.</string>
+    <string name="runtime_permission_rationale_message_storage">Please enable Storage access to upload picture for your report.</string>
+    <string name="runtime_permission_rationale_message"><![CDATA[Notes would like to access your <b>%1$s</b>. It is required to ensure all devices and functionalities are working properly.]]></string>
+    <string name="runtime_permission_permanently_denied_message"><![CDATA[Notes does not have access to your <b>%1$s</b>. Please enable the access to use Notes properly. Go to Settings > Permissions and turn ON <b>%1$s</b>.]]></string>
+    <string name="login">Login</string>
+    <string name="register_here">Register here</string>
+    <string name="profile_picture">Profile Picture</string>
 </resources>

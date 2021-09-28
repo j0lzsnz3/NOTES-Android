@@ -1,6 +1,8 @@
-package com.snapnoob.notes.feature.di
+package com.snapnoob.notes.di
 
 import android.content.Context
+import com.snapnoob.notes.data.SharedPreference
+import com.snapnoob.notes.data.SharedPreferenceImpl
 import com.snapnoob.notes.network.RetrofitService
 import dagger.Module
 import dagger.Provides
@@ -17,5 +19,11 @@ object AppModule {
     @Provides
     fun provideRetrofitService(@ApplicationContext context: Context): RetrofitService {
         return RetrofitService(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(@ApplicationContext context: Context): SharedPreference {
+        return SharedPreferenceImpl(context)
     }
 }

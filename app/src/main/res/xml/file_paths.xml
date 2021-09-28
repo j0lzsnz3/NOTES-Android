@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-path
+        name="my_images"
+        path="Android/data/com.uhacorp.notes/files/Pictures" />
+    <external-path
+        name="Backup"
+        path="notes-backup" />
+    <external-path
+        name="DataDownload"
+        path="Android/data/com..uhacorp.notes/files/Download" />
+    <external-files-path
+        name="Download"
+        path="Download/" />
+    <external-files-path
+        name="Backup_New_API"
+        path="." />
+</paths>

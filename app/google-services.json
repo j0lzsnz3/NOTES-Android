@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "761660946909",
+    "project_id": "msib-873ae",
+    "storage_bucket": "msib-873ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761660946909:android:dd8d21fadc28c3911f1e34",
+        "android_client_info": {
+          "package_name": "com.snapnoob.notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761660946909-64qsoekvivsrsqhkbnpq4tubnvnmullo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.snapnoob.notes",
+            "certificate_hash": "a78bef876ba0aa7a300075c64bcfad1e00d2c56b"
+          }
+        },
+        {
+          "client_id": "761660946909-slh61ajqg5laacv1akafd140bdvrcp38.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqUCH3nOpAbPCoL0zDLar8Qg0S4g0tcUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "761660946909-slh61ajqg5laacv1akafd140bdvrcp38.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

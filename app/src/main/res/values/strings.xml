@@ -39,4 +39,6 @@
     <string name="str_please_waiting">Please wait ...</string>
     <string name="str_choose_birth_date">Choose birth date</string>
     <string name="update_data">Update Data</string>
+    <string name="fcm_message">Ads Notification</string>
+    <string name="default_notification_channel_id">channel_default</string>
 </resources>

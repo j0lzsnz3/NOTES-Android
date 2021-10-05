@@ -22,5 +22,8 @@ class NotesApplication : Application() {
             client.addPlugin(NetworkFlipperPlugin())
             client.start()
         }
+
+        FirebaseSetup.retrieveRegistrationToken()
+        FirebaseSetup.subscribeToChannel(this, "Ads")
     }
 }

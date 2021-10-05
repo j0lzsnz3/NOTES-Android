@@ -8,6 +8,13 @@ import com.snapnoob.notes.feature.main.GetAllNotesRepository
 import com.snapnoob.notes.feature.main.GetProfileRepository
 import com.snapnoob.notes.feature.main.NotesListUseCase
 import com.snapnoob.notes.feature.main.NotesListUseCaseImpl
+import com.snapnoob.notes.feature.notification.NotificationRepository
+import com.snapnoob.notes.feature.notification.SendDataNotificationUseCase
+import com.snapnoob.notes.feature.notification.SendDataNotificationUseCaseImpl
+import com.snapnoob.notes.feature.notification.SendNotificationUseCase
+import com.snapnoob.notes.feature.notification.SendNotificationUseCaseImpl
+import com.snapnoob.notes.feature.notification.SendTokenNotificationUseCase
+import com.snapnoob.notes.feature.notification.SendTokenNotificationUseCaseImpl
 import com.snapnoob.notes.feature.profile.*
 import com.snapnoob.notes.feature.register.RegisterUseCase
 import com.snapnoob.notes.feature.register.RegisterUseCaseImpl
@@ -97,6 +104,24 @@ object UseCaseModule {
     @Provides
     fun provideMainGetProfileUseCase(getProfileRepository: GetProfileRepository): MainGetProfileUseCase {
         return MainGetProfileUseCaseImpl(getProfileRepository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSendNotificationUseCase(notificationRepository: NotificationRepository): SendNotificationUseCase {
+        return SendNotificationUseCaseImpl(notificationRepository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSendTokenNotificationUseCase(notificationRepository: NotificationRepository): SendTokenNotificationUseCase {
+        return SendTokenNotificationUseCaseImpl(notificationRepository, Dispatchers.IO)
+    }
+
+    @Singleton
+    @Provides
+    fun provideSendDataNotificationUseCase(notificationRepository: NotificationRepository): SendDataNotificationUseCase {
+        return SendDataNotificationUseCaseImpl(notificationRepository, Dispatchers.IO)
     }
 
 }

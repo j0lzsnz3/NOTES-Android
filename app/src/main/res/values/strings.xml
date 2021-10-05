@@ -41,4 +41,10 @@
     <string name="update_data">Update Data</string>
     <string name="fcm_message">Ads Notification</string>
     <string name="default_notification_channel_id">channel_default</string>
+    <string name="message">Message</string>
+    <string name="token">Token</string>
+    <string name="topic">Topic</string>
+    <string name="data">Data</string>
+    <string name="select_notification_type">Select Notification Type</string>
+    <string name="send_notification">Send Notification</string>
 </resources>

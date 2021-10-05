@@ -29,6 +29,7 @@ class SplashActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[SplashViewModel::class.java]
         observeViewModel()
         checkIsUserLoggedIn()
+        viewModel.setFcmToken()
     }
 
     private fun observeViewModel() {

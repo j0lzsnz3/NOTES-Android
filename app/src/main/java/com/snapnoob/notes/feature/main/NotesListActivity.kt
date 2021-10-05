@@ -13,6 +13,7 @@ import com.snapnoob.notes.R
 import com.snapnoob.notes.databinding.ActivityNotesListBinding
 import com.snapnoob.notes.feature.edit.EditNotesActivity
 import com.snapnoob.notes.feature.edit.EditNotesEvent
+import com.snapnoob.notes.feature.notification.NotificationActivity
 import com.snapnoob.notes.feature.profile.ProfileActivity
 import com.snapnoob.notes.network.RetrofitService
 import com.snapnoob.notes.network.model.Notes
@@ -59,6 +60,7 @@ class NotesListActivity : AppCompatActivity() {
         binding.toolBar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menuCreate -> openEditNoteActivity(null)
+                R.id.createNotification -> openCreateNotificationActivity()
             }
             true
         }
@@ -115,6 +117,10 @@ class NotesListActivity : AppCompatActivity() {
         val intent = Intent(this, ProfileActivity::class.java)
         intent.putExtra(ProfileActivity.USER_PARCELABLE, user)
         startActivity(intent)
+    }
+
+    private fun openCreateNotificationActivity() {
+        startActivity(Intent(this, NotificationActivity::class.java))
     }
 
     override fun onResume() {

@@ -38,6 +38,10 @@ class RetrofitService @Inject constructor(
         return getRetrofit().create(UserService::class.java)
     }
 
+    fun getNotificationService(): NotificationService {
+        return getRetrofit().create(NotificationService::class.java)
+    }
+
     private fun createOkHttpFlipper(): OkHttpClient {
         return OkHttpClient.Builder()
             .addNetworkInterceptor(

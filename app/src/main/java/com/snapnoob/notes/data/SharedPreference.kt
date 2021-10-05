@@ -11,6 +11,8 @@ interface SharedPreference {
     fun getUserEmail(): String
     fun setUserId(userId: Long)
     fun getUserId(): Long
+    fun setFcmToken(token: String)
+    fun getFcmToken(): String?
 }
 
 class SharedPreferenceImpl @Inject constructor(
@@ -44,11 +46,19 @@ class SharedPreferenceImpl @Inject constructor(
 
     override fun getUserId(): Long = getSharedPreference().getLong(USER_ID, 0L)
 
+    override fun setFcmToken(token: String) {
+        getSharedPreference().edit().putString(FCM_TOKEN, token).apply()
+    }
+
+    override fun getFcmToken(): String? =
+        getSharedPreference().getString(FCM_TOKEN, "")
+
     companion object {
         private const val SHARED_PREF_NAME = "notes_pref"
 
         private const val IS_LOGIN = "is_login"
         private const val USER_EMAIL = "user_email"
         private const val USER_ID = "user_id"
+        private const val FCM_TOKEN = "fcm_token"
     }
 }

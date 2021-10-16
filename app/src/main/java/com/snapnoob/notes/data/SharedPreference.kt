@@ -2,6 +2,7 @@ package com.snapnoob.notes.data
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import javax.inject.Inject
 
 interface SharedPreference {
@@ -13,6 +14,7 @@ interface SharedPreference {
     fun getUserId(): Long
     fun setFcmToken(token: String)
     fun getFcmToken(): String?
+    fun clearAllData()
 }
 
 class SharedPreferenceImpl @Inject constructor(
@@ -52,6 +54,14 @@ class SharedPreferenceImpl @Inject constructor(
 
     override fun getFcmToken(): String? =
         getSharedPreference().getString(FCM_TOKEN, "")
+
+    override fun clearAllData() {
+        getSharedPreference().edit {
+            putBoolean(IS_LOGIN, false)
+            putString(USER_EMAIL, "")
+            putLong(USER_ID, 0L)
+        }
+    }
 
     companion object {
         private const val SHARED_PREF_NAME = "notes_pref"

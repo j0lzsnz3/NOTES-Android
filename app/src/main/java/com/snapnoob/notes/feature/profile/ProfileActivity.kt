@@ -13,6 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.snapnoob.notes.R
 import com.snapnoob.notes.databinding.ActivityProfileBinding
 import com.snapnoob.notes.databinding.ViewChoosePhotoBinding
+import com.snapnoob.notes.feature.login.LoginActivity
 import com.snapnoob.notes.network.model.User
 import com.snapnoob.notes.util.AndroidRuntimePermission
 import com.snapnoob.notes.util.AppUtil
@@ -64,6 +65,14 @@ class ProfileActivity : AppCompatActivity() {
                     Snackbar.make(view, "Update Profile Picture success", Snackbar.LENGTH_LONG).show()
                 }
                 is ProfileEvent.ShowError -> Snackbar.make(view, event.error, Snackbar.LENGTH_LONG).show()
+                is ProfileEvent.ShowLoginPage -> {
+                    Intent(this, LoginActivity::class.java).apply {
+                        flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    }.also {
+                        startActivity(it)
+                    }
+                    finish()
+                }
             }
         })
     }
@@ -89,6 +98,7 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
         }
+        binding.btnLogout.setOnClickListener { viewModel.logout() }
     }
 
     private fun displayProfile() {

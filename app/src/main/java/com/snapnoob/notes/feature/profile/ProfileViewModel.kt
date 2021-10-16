@@ -3,6 +3,7 @@ package com.snapnoob.notes.feature.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.snapnoob.notes.data.SharedPreference
 import com.snapnoob.notes.feature.SingleLiveEvent
 import com.snapnoob.notes.network.ResultWrapper
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(
-    private val uploadProfilePictureUseCase: UploadProfilePictureUseCase
+    private val uploadProfilePictureUseCase: UploadProfilePictureUseCase,
+    private val sharedPreference: SharedPreference
 ) : ViewModel() {
 
     private val eventData = SingleLiveEvent<ProfileEvent>()
@@ -31,9 +33,15 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
+    fun logout() {
+        sharedPreference.clearAllData()
+        eventData.postValue(ProfileEvent.ShowLoginPage)
+    }
+
 }
 
 sealed class ProfileEvent {
     object UpdateProfilePictureSuccess : ProfileEvent()
+    object ShowLoginPage : ProfileEvent()
     class ShowError(val error: String) : ProfileEvent()
 }

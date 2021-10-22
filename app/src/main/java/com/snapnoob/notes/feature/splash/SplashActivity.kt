@@ -46,7 +46,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkIsUserLoggedIn() {
-        Timer("Launch next activity", false).schedule(3000) {
+        Timer("Launch next activity", false).schedule(4000) {
             viewModel.checkIsUserLoggedIn()
         }
     }

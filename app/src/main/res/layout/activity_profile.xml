@@ -120,6 +120,15 @@
                 android:text="@string/update_data"
                 android:textColor="@color/white" />
 
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/logout"
+                android:textColor="@color/white"
+                android:backgroundTint="@android:color/holo_red_light"/>
+
         </LinearLayout>
 
     </ScrollView>

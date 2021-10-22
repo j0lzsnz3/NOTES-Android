@@ -17,7 +17,11 @@
         android:theme="@style/Theme.Notes"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".feature.biometric.EnableBiometricLoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".feature.notification.NotificationActivity"
+            android:launchMode="singleInstance"
             android:exported="true" />
         <activity
             android:name=".feature.splash.SplashActivity"
@@ -44,7 +48,7 @@
             android:exported="true" />
         <activity
             android:name=".feature.main.NotesListActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
 
         <service
             android:name=".MyFirebaseMessagingService"

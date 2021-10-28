@@ -1,13 +1,13 @@
 package com.snapnoob.notes.feature.main
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -19,18 +19,17 @@ import com.snapnoob.notes.feature.biometric.CryptographyManager
 import com.snapnoob.notes.feature.biometric.EnableBiometricLoginActivity
 import com.snapnoob.notes.feature.biometric.SHARED_PREFS_FILENAME
 import com.snapnoob.notes.feature.edit.EditNotesActivity
-import com.snapnoob.notes.feature.edit.EditNotesEvent
 import com.snapnoob.notes.feature.notification.NotificationActivity
 import com.snapnoob.notes.feature.profile.ProfileActivity
 import com.snapnoob.notes.network.RetrofitService
 import com.snapnoob.notes.network.model.Notes
 import com.snapnoob.notes.network.model.User
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 
 @AndroidEntryPoint
 class NotesListActivity : AppCompatActivity() {
 
-    private lateinit var biometricPrompt: BiometricPrompt
     private val cryptographyManager = CryptographyManager()
     private val ciphertextWrapper
         get() = cryptographyManager.getCiphertextWrapperFromSharedPrefs(
@@ -39,6 +38,9 @@ class NotesListActivity : AppCompatActivity() {
             Context.MODE_PRIVATE,
             CIPHERTEXT_WRAPPER
         )
+
+    private var alarmManager: AlarmManager? = null
+    private lateinit var alarmIntent: PendingIntent
 
     private lateinit var binding: ActivityNotesListBinding
     private lateinit var view: View
@@ -71,6 +73,7 @@ class NotesListActivity : AppCompatActivity() {
                 startActivity(Intent(this, EnableBiometricLoginActivity::class.java))
             }
         }
+        setupAlarmManager()
     }
 
     private fun initView() {
@@ -145,6 +148,28 @@ class NotesListActivity : AppCompatActivity() {
 
     private fun openCreateNotificationActivity() {
         startActivity(Intent(this, NotificationActivity::class.java))
+    }
+
+    private fun setupAlarmManager() {
+        alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        alarmIntent = Intent(this, AlarmReceiver::class.java).let { intent ->
+            PendingIntent.getBroadcast(this, 0, intent, 0)
+        }
+
+        // Alarm akan dimulai pukul 22:30
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = System.currentTimeMillis()
+            set(Calendar.HOUR_OF_DAY, 22)
+            set(Calendar.MINUTE, 30)
+        }
+
+        // Alarm akan diulang setiap 2 menit
+        alarmManager?.setRepeating(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            1000 * 60 * 2,
+            alarmIntent
+        )
     }
 
     override fun onResume() {
